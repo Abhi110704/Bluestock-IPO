@@ -1,11 +1,6 @@
-Django==5.0.6
-djangorestframework==3.16.0
-gunicorn==23.0.0
-psycopg2-binary==2.9.10
-pillow==11.2.1
-dj-database-url==3.0.0
-sqlparse==0.5.3
-asgiref==3.8.1
-typing_extensions==4.14.0
-tzdata==2025.2
-python-dotenv==1.0.1
+gunicorn
+django
+djangorestframework
+psycopg2-binary
+dj-database-url
+python-dotenv
