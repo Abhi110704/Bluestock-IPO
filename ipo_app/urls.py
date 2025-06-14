@@ -6,7 +6,7 @@ router = DefaultRouter()
 router.register('ipo', IPOViewSet)
 
 urlpatterns = [
-    path('', ipo_list_view, name='ipo-list-ui'),        # 🌐 Home page
-    path('api/', include(router.urls)),                 # 🔌 API endpoints
-    path('chart-data/', ipo_chart_data, name='ipo_chart_data'),
+    path('', ipo_list_view, name='ipo-list-ui'),        # 🌐 IPO listing UI
+    path('api/', include(router.urls)),                 # 🔌 REST API
+    path('chart-data/', ipo_chart_data, name='ipo_chart_data'),  # 📊 Chart endpoint (if needed)
 ]
