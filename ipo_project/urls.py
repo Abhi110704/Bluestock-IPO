@@ -1,10 +1,13 @@
-# ipo_project/urls.py
 from django.contrib import admin
 from django.urls import path, include
-from ipo_app import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.ipo_list_view, name='ipo-list'),
-    path('api/', include('ipo_app.urls')),
+    path('', include('ipo_app.urls')),  # Routes root URL to ipo_app
 ]
+
+# Serve media files during development
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
