@@ -28,7 +28,8 @@ A modern, responsive Django web app to track, view, and manage Initial Public Of
 ## 🖼️ Screenshot
 
 ![Bluestock UI Preview 1](https://raw.githubusercontent.com/Abhi110704/Bluestock-IPO/refs/heads/main/Sample%20Project%20Files/Screenshot%202025-06-14%20190611.png)
-![Bluestock UI Preview 2](https://raw.githubusercontent.com/Abhi110704/Bluestock-IPO/refs/heads/main/Sample%20Project%20Files/Screenshot%202025-06-14%20190626.png)
+![Bluestock UI Preview 2](https://raw.githubusercontent.com/Abhi110704/Bluestock-IPO/refs/heads/main/Sample%20Project%20Files/Screenshot%202025-06-14%20191003.png)
+![Bluestock UI Preview 3](https://raw.githubusercontent.com/Abhi110704/Bluestock-IPO/refs/heads/main/Sample%20Project%20Files/Screenshot%202025-06-14%20190626.png)
 
 ---
 
