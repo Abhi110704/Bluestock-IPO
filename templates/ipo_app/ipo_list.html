@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bluestock IPO Listings</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <style>
+        :root {
+            --card-bg: #ffffff;
+            --text-color: #0d1b2a;
+            --accent: #4682b4;
+            --font: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            --bg-color: #f4f7fa;
+            --header-footer-bg: #e0eaf2;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            font-family: var(--font);
+            color: var(--text-color);
+            padding: 1rem;
+            transition: background 0.3s ease, color 0.3s ease;
+            background: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%);
+        }
+
+        header, footer {
+            text-align: center;
+            padding: 1.5rem 1rem;
+            background-color: var(--header-footer-bg);
+            color: var(--text-color);
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+        }
+
+        .description {
+            text-align: center;
+            font-size: 1rem;
+            margin: 0.5rem auto 1.8rem;
+            max-width: 700px;
+            color: var(--text-color);
+        }
+
+        .search-filter {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .search-filter input {
+            padding: 0.6rem;
+            border-radius: 8px;
+            border: none;
+            width: 90%;
+            max-width: 400px;
+            background-color: #2a4f75;
+            color: #fff;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        .ipo-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .ipo-card {
+            background: rgba(255,255,255,0.98);
+            color: #111;
+            box-shadow: 0 8px 30px rgba(70,130,180,0.10);
+            border: 1px solid #e0eaf2;
+            padding: 1.5rem;
+            border-radius: 18px;
+            backdrop-filter: blur(8px) saturate(120%);
+            border: 1px solid rgba(70,130,180,0.12);
+            box-shadow: 0 8px 32px 0 rgba(31,38,135,0.18);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            height: 100%;
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .ipo-card::before {
+            content: "";
+            display: block;
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, #4682b4 0%, #6dd5ed 100%);
+            border-radius: 18px 18px 0 0;
+        }
+
+        .ipo-card:hover {
+            transform: translateY(-12px) scale(1.03);
+            box-shadow: 0 16px 40px rgba(70,130,180,0.25);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .ipo-card img {
+            max-width: 180px;
+            height: auto;
+            object-fit: contain;
+            margin-bottom: 1rem;
+            transition: transform 0.3s;
+        }
+
+        .ipo-card:hover img {
+            transform: scale(1.08) rotate(-2deg);
+        }
+
+        .ipo-card h3 {
+            margin: 0.5rem 0;
+            font-size: 1.1rem;
+            text-align: center;
+        }
+
+        .ipo-card p {
+            margin: 0.3rem 0;
+            font-size: 0.95rem;
+        }
+
+        .pagination {
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .pagination span, .pagination a {
+            display: inline-block;
+            margin: 0 5px;
+            padding: 6px 12px;
+            color: #fff;
+            background: #274c77;
+            border-radius: 6px;
+            text-decoration: none;
+            transition: background 0.3s ease;
+        }
+
+        .pagination .current {
+            background-color: var(--accent);
+            font-weight: bold;
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.6rem;
+            }
+
+            .ipo-card {
+                padding: 1rem;
+            }
+
+            .ipo-card img {
+                max-width: 140px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1 class="animate__animated animate__fadeInDown">📊 Bluestock IPO Listings</h1>
+        <p class="description">Track and compare initial public offerings (IPOs) from emerging companies. Stay informed about listing prices, market trends, and statuses — all in one place.</p>
+    </header>
+
+    <div class="search-filter">
+        <form method="get">
+            <input type="text" name="q" placeholder="Search companies..." value="{{ request.GET.q }}">
+        </form>
+    </div>
+
+    <div class="ipo-container">
+        {% for ipo in ipos %}
+        <div class="ipo-card">
+            {% if ipo.logo %}
+                <img src="{{ ipo.logo.url }}" alt="{{ ipo.company_name }}">
+            {% endif %}
+            <h3>{{ ipo.company_name }}</h3>
+            <p><strong>Listing Price:</strong> ₹{{ ipo.listing_price|default:"N/A" }}</p>
+            <p><strong>Current Price:</strong> ₹{{ ipo.current_market_price|default:"N/A" }}</p>
+            <p><strong>Status:</strong> <span class="ipo-status-badge">{{ ipo.status }}</span></p>
+        </div>
+        {% empty %}
+        <p style="grid-column: 1 / -1; text-align: center;">No IPOs found.</p>
+        {% endfor %}
+    </div>
+
+    <div class="pagination">
+        {% if is_paginated %}
+            {% if page_obj.has_previous %}
+                <a href="?page={{ page_obj.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">Previous</a>
+            {% endif %}
+
+            {% for page_num in paginator.page_range %}
+                {% if page_obj.number == page_num %}
+                    <span class="current">{{ page_num }}</span>
+                {% else %}
+                    <a href="?page={{ page_num }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">{{ page_num }}</a>
+                {% endif %}
+            {% endfor %}
+
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">Next</a>
+            {% endif %}
+        {% endif %}
+    </div>
+
+    <!-- Hero Section -->
+    <div style="width:100%;max-width:1100px;margin:2rem auto 2.5rem auto;padding:2.5rem 1rem 2rem 1rem;background:linear-gradient(90deg,#4682b4 0%,#6dd5ed 100%);border-radius:24px;box-shadow:0 8px 32px 0 rgba(31,38,135,0.18);text-align:center;color:#fff;">
+        <h2 style="font-size:2.3rem;margin-bottom:0.5rem;">Welcome to Bluestock IPO Portal 🚀</h2>
+        <p style="font-size:1.15rem;max-width:700px;margin:0 auto 1.2rem auto;">Discover, track, and compare the latest IPOs from top emerging companies. Stay ahead with real-time updates and exclusive insights!</p>
+        <a href="#" style="display:inline-block;padding:0.7em 2em;background:#fff;color:#4682b4;font-weight:600;border-radius:8px;text-decoration:none;font-size:1.1rem;box-shadow:0 2px 8px rgba(70,130,180,0.10);transition:background 0.2s;">Get Notified</a>
+    </div>
+
+    <!-- Section Divider (SVG Wave) -->
+    <div style="width:100%;overflow:hidden;line-height:0;margin-bottom:2rem;">
+      <svg viewBox="0 0 500 40" preserveAspectRatio="none" style="display:block;width:100%;height:40px;"><path d="M0,20 C150,60 350,0 500,20 L500,00 L0,0 Z" style="stroke:none;fill:#4682b4;opacity:0.12;"></path></svg>
+    </div>
+
+    <!-- Floating Action Button -->
+    <button onclick="window.scrollTo({top: 0, behavior: 'smooth'});" style="position:fixed;bottom:32px;right:32px;background:linear-gradient(90deg,#4682b4 60%,#6dd5ed 100%);color:#fff;border:none;border-radius:50%;width:56px;height:56px;font-size:2rem;box-shadow:0 4px 16px rgba(70,130,180,0.18);cursor:pointer;z-index:1000;transition:background 0.3s,transform 0.2s;">↑</button>
+
+    <!-- Testimonials Section -->
+    <div style="max-width:900px;margin:3rem auto 2rem auto;text-align:center;">
+      <h3 style="font-size:1.5rem;margin-bottom:1.2rem;color:#4682b4;">What Our Users Say</h3>
+      <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:1.5rem;">
+        <div style="background:#fff;border-radius:14px;box-shadow:0 2px 8px rgba(70,130,180,0.10);padding:1.2rem 1.5rem;max-width:300px;min-width:220px;">
+          <p style="font-style:italic;">"Bluestock made IPO tracking so easy and fun! Highly recommended."</p>
+          <div style="margin-top:0.7rem;font-weight:600;color:#4682b4;">— Priya S.</div>
+        </div>
+        <div style="background:#fff;border-radius:14px;box-shadow:0 2px 8px rgba(70,130,180,0.10);padding:1.2rem 1.5rem;max-width:300px;min-width:220px;">
+          <p style="font-style:italic;">"Best platform for IPO insights. The design is beautiful!"</p>
+          <div style="margin-top:0.7rem;font-weight:600;color:#4682b4;">— Rahul M.</div>
+        </div>
+        <div style="background:#fff;border-radius:14px;box-shadow:0 2px 8px rgba(70,130,180,0.10);padding:1.2rem 1.5rem;max-width:300px;min-width:220px;">
+          <p style="font-style:italic;">"I love the real-time updates and easy navigation."</p>
+          <div style="margin-top:0.7rem;font-weight:600;color:#4682b4;">— Sneha T.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Enhanced Footer with Social Icons -->
+    <footer style="width:100%;background-color:#e0eaf2;color:#0d1b2a;text-align:center;padding:1.5rem 1rem;border-radius:10px 10px 0 0;">
+        <p style="margin:0;">&copy; 2025 Bluestock Fintech. All rights reserved.</p>
+    </footer>
+
+    <div style="max-width:600px;margin:2rem auto;">
+      <h3 style="text-align:center;color:#4682b4;">IPO Trends</h3>
+      <canvas id="ipoChart" width="600" height="300"></canvas>
+    </div>
+
+    <div id="root"></div>
+    <script src="/static/js/main.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+      const ctx = document.getElementById('ipoChart').getContext('2d');
+      const ipoChart = new Chart(ctx, {
+          type: 'bar',
+          data: {
+              labels: [], // initially empty
+              datasets: [{
+                  label: 'Number of IPOs',
+                  data: [],
+                  backgroundColor: 'rgba(70, 130, 180, 0.7)'
+              }]
+          },
+          options: {
+              responsive: true,
+              plugins: {
+                  legend: { display: false },
+                  title: { display: true, text: 'Monthly IPO Count' }
+              }
+          }
+      });
+
+      function updateChart() {
+          fetch('/chart-data/')
+              .then(response => response.json())
+              .then(data => {
+                  ipoChart.data.labels = data.labels;
+                  ipoChart.data.datasets[0].data = data.values;
+                  ipoChart.update();
+              });
+      }
+
+      setInterval(updateChart, 10000); // update every 10 seconds
+      updateChart(); // initial load
+    </script>
+</body>
+</html>
