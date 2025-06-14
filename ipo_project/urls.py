@@ -5,9 +5,9 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('ipo_app.urls')),  # Routes root URL to ipo_app
+    path('', include('ipo_app.urls')),  # ✅ Add this for home route
+    path('api/', include('ipo_app.urls')),  # Already for API
 ]
 
-# Serve media files during development
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
