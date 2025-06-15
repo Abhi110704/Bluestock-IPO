@@ -4,3 +4,10 @@ services:
     env: python
     buildCommand: pip install -r requirements.txt
     startCommand: gunicorn ipo_project.wsgi:application --bind 0.0.0.0:$PORT
+    envVars:
+      - key: DEBUG
+        value: false
+      - key: SECRET_KEY
+        value: django-insecure-!77(@y%jew*tx84g0b(t7bb2lom1&$mfgex0qo-(8sl0=*@4%e
+      - key: DATABASE_URL
+        value: postgresql://bluestock_ipo_db_user:hcQiRxNKRR2gZPwBHFrxa9UKeONydBk0@dpg-d16nra2dbo4c73cloqng-a/bluestock_ipo_db
