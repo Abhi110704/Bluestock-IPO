@@ -1,13 +1,16 @@
 from pathlib import Path
 import os
+from pathlib import Path
 from dotenv import load_dotenv
 import dj_database_url
 
-# Load .env variables
 load_dotenv()
 
-# Base directory
 BASE_DIR = Path(__file__).resolve().parent.parent
+SECRET_KEY = os.getenv('SECRET_KEY')  # must be set in env
+DEBUG = os.getenv('DEBUG', 'False') == 'True'
+ALLOWED_HOSTS = ['*']
+
 
 # Security
 SECRET_KEY = os.getenv('SECRET_KEY', 'fallback-secret-key')  # Always provide fallback for local
@@ -45,7 +48,7 @@ ROOT_URLCONF = 'ipo_project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
