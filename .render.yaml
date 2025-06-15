@@ -2,13 +2,5 @@ services:
   - type: web
     name: bluestock-ipo
     env: python
-    region: oregon
-    buildCommand: "pip install -r requirements.txt"
-    startCommand: "gunicorn ipo_project.wsgi"
-    envVars:
-      - key: SECRET_KEY
-        value: your-generated-django-secret-key
-      - key: DEBUG
-        value: false
-      - key: DATABASE_URL
-        value: your-full-render-db-url
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn ipo_project.wsgi:application --bind 0.0.0.0:$PORT
