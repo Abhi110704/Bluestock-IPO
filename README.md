@@ -37,6 +37,18 @@ A modern, responsive Django web app to track, view, and manage Initial Public Of
 ![Postman API Preview 2](https://github.com/Abhi110704/Bluestock-IPO/blob/main/Sample%20Project%20Files/Screenshot%202025-06-15%20191149.png?raw=true)
 
 ---
+## 🖼️ Django
+
+![Postman API Preview 1](https://github.com/Abhi110704/Bluestock-IPO/blob/main/Sample%20Project%20Files/Screenshot%202025-06-15%20204822.png?raw=true)
+![Postman API Preview 2](https://github.com/Abhi110704/Bluestock-IPO/blob/main/Sample%20Project%20Files/Screenshot%202025-06-15%20204833.png?raw=true)
+![Postman API Preview 3](https://github.com/Abhi110704/Bluestock-IPO/blob/main/Sample%20Project%20Files/Screenshot%202025-06-15%20204845.png?raw=true)
+
+---
+## 🖼️ Django Admin
+
+![Postman API Preview 1](https://github.com/Abhi110704/Bluestock-IPO/blob/main/Sample%20Project%20Files/Screenshot%202025-06-15%20204856.png?raw=true)
+
+---
 
 ## 🚀 Getting Started (Local Deployment)
 
