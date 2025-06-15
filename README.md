@@ -5,13 +5,11 @@ A modern, responsive Django web app to track, view, and manage Initial Public Of
 ## 🎯 Features
 
 - 🔍 Search and filter IPO listings
-- 🌙 Light & dark mode toggle
 - 📱 Fully responsive on all devices
 - 💾 Image upload support
 - ⚡ Scroll animations using Animate.css
 - ✨ Smooth transitions & minimal UI
 - ✅ Admin panel for managing IPOs
-- 🎨 Dark blue themed modern design
 
 ---
 
