@@ -56,7 +56,7 @@ A modern, responsive Django web app to track, view, and manage Initial Public Of
 4. **Create `.env` or configure PostgreSQL settings in `settings.py`:**
 
    ```env
-   DATABASE_URL=postgres://youruser:yourpassword@localhost:5432/ipo_db
+   DATABASE_URL=postgresql://bluestock_ipo_db_user:hcQiRxNKRR2gZPwBHFrxa9UKeONydBk0@dpg-d16nra2dbo4c73cloqng-a/bluestock_ipo_db
    ```
 
 5. **Run migrations:**
