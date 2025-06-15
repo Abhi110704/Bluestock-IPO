@@ -139,8 +139,8 @@ bluestock-ipo/
 ```
 ## 🔗 Live URLs (Local)
 
-- 🛠 **Admin Panel:** [http://127.0.0.1:8000/admin/](http://127.0.0.1:8000/admin/)
-- 📄 **IPO Listings (UI):** [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
+- 🛠 **Admin Panel:**                   [http://127.0.0.1:8000/admin/](http://127.0.0.1:8000/admin/)
+- 📄 **IPO Listings (UI):**            [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
 - 🔌 **API Endpoint (GET/POST IPOs):** [http://127.0.0.1:8000/api/ipo/](http://127.0.0.1:8000/api/ipo/)
 
 ---
