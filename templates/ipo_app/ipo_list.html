@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
     <style>
         :root {
             --primary: #1a237e;
@@ -1051,146 +1053,18 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1 class="animate__animated animate__fadeInDown">
-                <img src="https://github.com/Abhi110704/Bluestock-IPO/blob/main/Sample%20Project%20Files/logo.png?raw=true" alt="Bluestock Logo">
-                <span>IPO (Initial Public Offering) Listings</span>
-            </h1>
-            <p class="description">Track and compare Initial Public Offerings (IPOs) from emerging and established companies with ease. Access detailed insights including company profiles, price bands, issue sizes, listing prices, market trends, and real-time status updates — all through a single intuitive platform. Stay informed, stay ahead.</p>
-        </header>
+    <div id="root"></div>
 
-        <div class="section-divider"></div>
-
-        <div style="width:100%;max-width:1100px;margin:2rem auto 2.5rem auto;padding:2.5rem 1rem 2rem 1rem;background:#f8f9fa;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,0.1);text-align:center;color:#333">
-            <h2 style="font-size:2.3rem;margin-bottom:0.5rem">Welcome to Bluestock IPO Portal🚀</h2>
-            <p style="font-size:1.15rem;max-width:700px;margin:0 auto 1.2rem auto">Discover, track, and compare the latest IPOs from top emerging companies. Stay ahead with real-time updates and exclusive insights!</p>
-            <a href="#" style="display:inline-block;padding:0.7em 2em;background:var(--accent);color:#fff;font-weight:600;border-radius:8px;text-decoration:none;font-size:1.1rem;box-shadow:0 2px 8px rgba(0,0,0,0.1);transition:background 0.2s">Get Notified</a>
-        </div>
-
-        <div class="section-divider"></div>
-
-        <div class="market-stats">
-            <div class="stat-card"><i class="fas fa-chart-line"></i><h4>Active IPOs</h4><p>12</p></div>
-            <div class="stat-card"><i class="fas fa-coins"></i><h4>Total Value</h4><p>₹2.5B</p></div>
-            <div class="stat-card"><i class="fas fa-users"></i><h4>Investors</h4><p>50K+</p></div>
-        </div>
-        <div class="section-divider"></div>
-        <div class="search-filter">
-            <form method="get" class="search-container">
-                <button type="button" class="search-button" onclick="toggleSearch()"><i class="fas fa-search"></i></button>
-                <div class="search-input-container"><input type="text" name="q" placeholder="Search companies..." value="{{ request.GET.q }}"></div>
-                <div class="search-info"><i class="fas fa-info-circle"></i><span>Search by company name, sector, or status</span></div>
-            </form>
-        </div>
-        <div class="section-divider"></div>
-        <div class="ipo-container">
-            {% for ipo in ipos %}
-            <div class="ipo-card">
-                {% if ipo.logo %}<img src="{{ ipo.logo.url }}" alt="{{ ipo.company_name }}">{% else %}<img src="https://source.unsplash.com/random/300x200/?stock,finance" alt="{{ ipo.company_name }}">{% endif %}
-                <h3>{{ ipo.company_name }}</h3>
-                <div class="ipo-details">
-                    <p><strong>Listing Price:</strong> ₹{{ ipo.listing_price|default:"N/A" }}</p>
-                    <p><strong>Current Price:</strong> ₹{{ ipo.current_market_price|default:"N/A" }}</p>
-                    <p><strong>Status:</strong> <span class="ipo-status-badge">{{ ipo.status }}</span></p>
-                    <p><strong>Sector:</strong> {{ ipo.sector|default:"Technology" }}</p>
-                    <p><strong>Issue Size:</strong> ₹{{ ipo.issue_size|default:"N/A" }}</p>
-                </div>
-            </div>
-            {% empty %}
-            <p style="grid-column:1/-1;text-align:center">No IPOs found.</p>
-            {% endfor %}
-        </div>
-        <div class="section-divider"></div>
-        <div class="feature-section">
-            <div class="feature-grid">
-                <div class="feature-item"><i class="fas fa-chart-bar"></i><h3>Real-time Analytics</h3><p>Track IPO performance with advanced analytics and real-time market data.</p></div>
-                <div class="feature-item"><i class="fas fa-bell"></i><h3>Smart Alerts</h3><p>Get instant notifications about price changes and important updates.</p></div>
-                <div class="feature-item"><i class="fas fa-file-alt"></i><h3>Detailed Reports</h3><p>Access comprehensive reports and analysis for informed decisions.</p></div>
-                <div class="feature-item"><i class="fas fa-shield-alt"></i><h3>Secure Platform</h3><p>Your data is protected with enterprise-grade security measures.</p></div>
-            </div>
-        </div>
-        <div class="pagination">
-            {% if is_paginated %}
-                {% if page_obj.has_previous %}<a href="?page={{ page_obj.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">Previous</a>{% endif %}
-                {% for page_num in paginator.page_range %}
-                    {% if page_obj.number == page_num %}<span class="current">{{ page_num }}</span>{% else %}<a href="?page={{ page_num }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">{{ page_num }}</a>{% endif %}
-                {% endfor %}
-                {% if page_obj.has_next %}<a href="?page={{ page_obj.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">Next</a>{% endif %}
-            {% endif %}
-        </div>
-        <div class="chart-section">
-            <h3>IPO Market Trends</h3>
-            <div class="chart-container"><canvas id="ipoChart"></canvas></div>
-        </div>
-        <div class="section-divider"></div>
-        <div class="testimonials-section">
-            <div class="testimonials-header"><h3>What Our Users Say</h3></div>
-            <div class="testimonials-container">
-                <div class="testimonial-card">
-                    <div class="testimonial-avatar">PS</div>
-                    <div class="testimonial-content">
-                        <p class="testimonial-text">"Bluestock made IPO tracking so easy and fun! Highly recommended."</p>
-                        <div class="testimonial-author">— Priya S.</div>
-                    </div>
-                </div>
-                <div class="testimonial-card">
-                    <div class="testimonial-avatar">RM</div>
-                    <div class="testimonial-content">
-                        <p class="testimonial-text">"Best platform for IPO insights. The design is beautiful!"</p>
-                        <div class="testimonial-author">— Rahul M.</div>
-                    </div>
-                </div>
-                <div class="testimonial-card">
-                    <div class="testimonial-avatar">ST</div>
-                    <div class="testimonial-content">
-                        <p class="testimonial-text">"I love the real-time updates and easy navigation."</p>
-                        <div class="testimonial-author">— Sneha T.</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="section-divider"></div>
-        <div class="footer-section">
-            <div class="footer-content">
-                <p class="copyright">&copy; 2025 Bluestock Fintech. All rights reserved.Owned and Developed by Abhiyanshu Anand</p>
-                <div class="social-links">
-                    <a href="https://github.com/Abhi110704/Bluestock-IPO" target="_blank"><i class="fab fa-github"></i></a>
-                    <a href="https://www.linkedin.com/in/abhiyanshu-anand-617963281" target="_blank"><i class="fab fa-linkedin"></i></a>
-                </div>
-            </div>
-        </div>
-        <div id="loading-indicator" style="display:none;text-align:center;padding:2rem">
-            <i class="fas fa-spinner fa-spin fa-2x" style="color:var(--accent)"></i>
-            <p style="margin-top:1rem">Loading...</p>
-        </div>
-        <div id="error-message" style="display:none;text-align:center;padding:1rem;background:#ffebee;color:#c62828;border-radius:8px;margin:1rem">
-            <i class="fas fa-exclamation-circle"></i>
-            <p id="error-text"></p>
-        </div>
-        <button id="scroll-to-top" class="scroll-to-top"><i class="fas fa-arrow-up"></i></button>
-        <div id="root"></div>
-        <script src="/static/js/main.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-        <script>
-            const ctx=document.getElementById('ipoChart').getContext('2d');
-            const ipoChart=new Chart(ctx,{type:'bar',data:{labels:[],datasets:[{label:'Number of IPOs',data:[],backgroundColor:'rgba(63,81,181,0.7)',borderColor:'rgba(63,81,181,1)',borderWidth:1,borderRadius:4}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},title:{display:true,text:'Monthly IPO Count',font:{size:16,weight:'bold'},padding:{top:10,bottom:20}}},scales:{y:{beginAtZero:true,grid:{color:'rgba(0,0,0,0.1)'}},x:{grid:{display:false}}}}});
-            function updateChart(){fetch('/chart-data/').then(response=>response.json()).then(data=>{ipoChart.data.labels=data.labels;ipoChart.data.datasets[0].data=data.values;ipoChart.update()})}
-            setInterval(updateChart,10000);
-            updateChart();
-            function handleResponsiveImages(){const images=document.querySelectorAll('.ipo-card img');images.forEach(img=>{if(img.naturalWidth===0){img.src='https://source.unsplash.com/random/300x200/?stock,finance'}})}
-            function showLoading(){document.getElementById('loading-indicator').style.display='block'}
-            function hideLoading(){document.getElementById('loading-indicator').style.display='none'}
-            function showError(message){const errorDiv=document.getElementById('error-message');const errorText=document.getElementById('error-text');errorText.textContent=message;errorDiv.style.display='block';setTimeout(()=>{errorDiv.style.display='none'},5000)}
-            document.addEventListener('DOMContentLoaded',()=>{handleResponsiveImages();const searchInput=document.querySelector('.search-filter input');if(searchInput){searchInput.addEventListener('input',e=>{if(e.target.value.length>2){showLoading()}})}let resizeTimer;window.addEventListener('resize',()=>{clearTimeout(resizeTimer);resizeTimer=setTimeout(()=>{handleResponsiveImages()},250)})});
-            function toggleTheme(){const body=document.documentElement;const themeToggle=document.querySelector('.theme-toggle i');if(body.getAttribute('data-theme')==='dark'){body.removeAttribute('data-theme');themeToggle.classList.remove('fa-sun');themeToggle.classList.add('fa-moon');localStorage.setItem('theme','light')}else{body.setAttribute('data-theme','dark');themeToggle.classList.remove('fa-moon');themeToggle.classList.add('fa-sun');localStorage.setItem('theme','dark')}}
-            document.addEventListener('DOMContentLoaded',()=>{const savedTheme=localStorage.getItem('theme');if(savedTheme==='dark'){document.documentElement.setAttribute('data-theme','dark');document.querySelector('.theme-toggle i').classList.replace('fa-moon','fa-sun')}});
-            function toggleSearch(){const searchContainer=document.querySelector('.search-input-container');searchContainer.classList.toggle('expanded');if(searchContainer.classList.contains('expanded')){searchContainer.querySelector('input').focus()}}
-            document.addEventListener('click',function(event){const searchFilter=document.querySelector('.search-filter');const searchContainer=document.querySelector('.search-input-container');if(!searchFilter.contains(event.target)&&searchContainer.classList.contains('expanded')){searchContainer.classList.remove('expanded')}});
-            const scrollToTopBtn=document.getElementById('scroll-to-top');
-            window.addEventListener('scroll',()=>{if(window.scrollY>300){scrollToTopBtn.classList.add('show')}else{scrollToTopBtn.classList.remove('show')}});
-            scrollToTopBtn.addEventListener('click',()=>{window.scrollTo({top:0,behavior:'smooth'})});
-        </script>
-    </div>
+    <!-- React and ReactDOM -->
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    
+    <!-- Babel for JSX -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
+    <!-- Your React Components -->
+    <script type="text/babel" src="{% static 'js/components/IPOList.js' %}"></script>
+    <script type="text/babel" src="{% static 'js/App.js' %}"></script>
+    <script type="text/babel" src="{% static 'js/index.js' %}"></script>
 </body>
 </html>
