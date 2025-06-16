@@ -8,11 +8,11 @@ IPO_STATUS_CHOICES = [
 
 class IPO(models.Model):
     company_name = models.CharField(max_length=255)
-    logo = models.ImageField(upload_to='logos/')
+    logo = models.ImageField(upload_to='logos/', null=True, blank=True)
     price_band = models.CharField(max_length=50)
     open_date = models.DateField()
     close_date = models.DateField()
-    issue_size = models.CharField(max_length=100)
+    issue_size = models.DecimalField(max_digits=15, decimal_places=2)  # Store in crores
     issue_type = models.CharField(max_length=50)
     listing_date = models.DateField()
     status = models.CharField(max_length=20, choices=IPO_STATUS_CHOICES)
