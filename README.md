@@ -1,6 +1,6 @@
 # 📊 Bluestock IPO Listings
 
-A modern, responsive Django web app to track, view, and manage Initial Public Offerings (IPOs). Built with PostgreSQL, Django REST Framework, and a custom-designed UI.
+A modern, responsive Django web app to track, view, and manage Initial Public Offerings (IPOs). Built with PostgreSQL, Django REST Framework, and a React.js frontend.
 
 ## 🎯 Features
 
@@ -10,20 +10,21 @@ A modern, responsive Django web app to track, view, and manage Initial Public Of
 - ⚡ Scroll animations using Animate.css
 - ✨ Smooth transitions & minimal UI with a modern design
 - ✅ Admin panel for managing IPOs
+- 📊 Interactive IPO trends chart
 
 ---
 
 ## 🛠️ Tech Stack
 
-- **Frontend:** HTML, CSS (custom), Animate.css
+- **Frontend:** React.js, HTML, CSS (custom), Animate.css, Chart.js
 - **Backend:** Django 5.0, Django REST Framework
 - **Database:** PostgreSQL
 - **Hosting:** GitHub + Render (optional)
-- **Other:** Pillow (for image uploads)
+- **Other:** Pillow (for image uploads), npm
 
 ---
 
-## 🖼️ Screenshot
+## 🖼️ Screenshots
 
 ![Bluestock UI Preview 1](https://github.com/Abhi110704/Bluestock-IPO/blob/main/Sample%20Project%20Files/01.png?raw=true)
 ![Bluestock UI Preview 2](https://github.com/Abhi110704/Bluestock-IPO/blob/main/Sample%20Project%20Files/02.png?raw=true)
@@ -69,6 +70,8 @@ Before you begin, ensure you have the following installed on your system:
     *   [Download Git](https://git-scm.com/downloads)
 *   **Python 3.x:** (e.g., Python 3.9 or newer) For running the Django application.
     *   [Download Python](https://www.python.org/downloads/)
+*   **Node.js & npm:** For building the React frontend.
+    *   [Download Node.js (includes npm)](https://nodejs.org/)
 *   **PostgreSQL:** The database server required for this project.
     *   [Download PostgreSQL](https://www.postgresql.org/download/)
 
@@ -91,14 +94,24 @@ Before you begin, ensure you have the following installed on your system:
     ```
     (You should see `(venv)` at the beginning of your command prompt line, indicating the virtual environment is active.)
 
-3.  **Install project dependencies:**
+3.  **Install backend dependencies:**
 
     Install all required Python packages listed in `requirements.txt`:
     ```cmd
     pip install -r requirements.txt
     ```
 
-4.  **Set up your PostgreSQL database:**
+4.  **Install frontend dependencies and build React app:**
+
+    Navigate to the `frontend` directory, install npm packages, and build the React application:
+    ```cmd
+    cd frontend
+    npm install
+    npm run build
+    cd ..
+    ```
+
+5.  **Set up your PostgreSQL database:**
 
     *   **Ensure your PostgreSQL server is running.**
     *   **Create a new database** for the project (e.g., `ipo_db`) and a user with appropriate permissions. You can do this using `psql` (PostgreSQL command-line client) or a GUI tool like pgAdmin. For example, using `psql`:
@@ -116,22 +129,28 @@ Before you begin, ensure you have the following installed on your system:
         DATABASE_URL=postgres://youruser:yourpassword@localhost:5432/ipo_db
         ```
 
-5.  **Run database migrations:**
+6.  **Run database migrations:**
 
     This will set up the necessary tables in your `ipo_db` database.
     ```cmd
-    python manage.py makemigrations
     python manage.py migrate
     ```
 
-6.  **Start the Django development server:**
+7.  **Load sample data (optional):**
+
+    Populate your database with some initial IPO data:
+    ```cmd
+    python manage.py load_sample_data
+    ```
+
+8.  **Start the Django development server:**
 
     Your application will be accessible in your web browser.
     ```cmd
     python manage.py runserver
     ```
 
-7.  **Create a superuser (optional):**
+9.  **Create a superuser (optional):**
 
     To access the Django admin panel and manage IPOs, create an administrator account:
     ```cmd
@@ -151,8 +170,12 @@ bluestock-ipo/
 │   ├── models.py
 │   ├── views.py
 │   └── templates/ipo_app/ipo_list.html
+├── frontend/
+│   ├── public/
+│   ├── src/
+│   └── package.json
 ├── static/
-│   └── styles, js, etc.
+│   └── styles, js, etc. (built React assets)
 ├── media/
 │   └── uploaded logos
 └── README.md
