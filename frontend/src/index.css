@@ -1,0 +1,35 @@
+/* Reset some default browser styles */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100vw; /* Explicitly set to viewport width */
+  overflow-x: hidden; /* Absolutely prevent horizontal scrolling */
+}
+
+body {
+  font-family: -apple-system, BlinkMacMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Universal box-sizing for predictable layouts */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* Responsive images and media */
+img, video, embed, object, iframe {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+/* Temporary debug rule removed */

@@ -1,0 +1,54 @@
+.pagination {
+  padding: 1rem;
+  margin-top: 1.5rem;
+  text-align: center;
+}
+
+.pagination span, 
+.pagination a {
+  padding: 0.4rem 0.8rem;
+  margin: 0 0.2rem;
+  font-size: 0.9rem;
+  text-decoration: none;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background: var(--card-bg);
+  color: var(--text-primary);
+  transition: all 0.3s ease;
+}
+
+.pagination span.current {
+  background: var(--accent);
+  color: white;
+  border-color: var(--accent);
+}
+
+.pagination a:hover {
+  background: var(--primary-light);
+  color: white;
+  border-color: var(--primary-light);
+}
+
+@media (max-width: 480px) {
+  .pagination span, 
+  .pagination a {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.8rem;
+  }
+}
+
+/* Dark Mode Specific Styles */
+[data-theme="dark"] .pagination a {
+    background: #2a2a2a;
+    color: #e0e0e0;
+    border-color: #404040;
+}
+
+[data-theme="dark"] .pagination span.current {
+    background: #90caf9;
+    color: #1a1a1a;
+}
+
+[data-theme="dark"] .pagination a:hover {
+    background: #404040;
+} 

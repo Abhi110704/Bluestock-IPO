@@ -1,0 +1,39 @@
+.chart-section {
+  background: var(--card-bg);
+  padding: 2rem;
+  border-radius: 12px;
+  margin: 2rem auto;
+  max-width: 800px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  border: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.chart-section h3 {
+  text-align: center;
+  color: var(--accent);
+  margin-bottom: 1.5rem;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.chart-container {
+  width: 100%;
+  max-width: 700px;
+  height: 300px;
+  position: relative;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .chart-section {
+    padding: 1.5rem;
+    margin: 1.5rem 1rem;
+  }
+
+  .chart-container {
+    height: 250px;
+  }
+} 
