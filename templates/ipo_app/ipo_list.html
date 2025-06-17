@@ -462,47 +462,68 @@
             margin-bottom: 1rem;
         }
 
-        footer {
-            background: var(--primary);
-            color: white;
-            text-align: center;
-            padding: 1.5rem 1rem;
-            margin-top: 3rem;
-            border-radius: 20px 20px 0 0;
-            position: relative;
-            bottom: 0;
-            width: 100%;
+        /* Footer Section */
+        body > footer {
+            background: var(--primary) !important;
+            color: white !important;
+            padding: 1.2rem 1rem !important;
+            margin: 2rem auto !important;
+            border-radius: 12px !important;
+            position: relative !important;
+            bottom: 0 !important;
+            width: 100% !important;
+            max-width: 800px !important;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1) !important;
+            display: block !important;
         }
 
-        .copyright {
-            font-size: 0.8rem;
-            color: rgba(255, 255, 255, 0.8);
-            margin-bottom: 0.5rem;
+        body > footer .copyright {
+            font-size: 1rem !important;
+            color: rgba(255, 255, 255, 0.9) !important;
+            font-weight: 500 !important;
+            letter-spacing: 0.3px !important;
+            text-align: center !important;
+            margin-bottom: 0.5rem !important;
+            display: block !important;
         }
 
-        .social-links {
-            margin-top: 0.5rem;
+        body > footer .social-links {
+            display: flex !important;
+            justify-content: center !important;
+            gap: 1rem !important;
+            margin-top: 0.5rem !important;
         }
 
-        .social-links a {
-            color: white;
-            margin: 0 0.5rem;
-            font-size: 1.2rem;
-            transition: color 0.3s;
-            opacity: 0.8;
+        body > footer .social-links a {
+            color: white !important;
+            font-size: 1.2rem !important;
+            transition: all 0.3s ease !important;
+            opacity: 0.8 !important;
+            text-decoration: none !important;
         }
 
-        .social-links a:hover {
-            color: var(--secondary);
-            opacity: 1;
+        body > footer .social-links a:hover {
+            color: var(--secondary) !important;
+            opacity: 1 !important;
         }
 
-        [data-theme="dark"] footer {
-            background: var(--primary-dark);
-        }
+        @media (max-width: 768px) {
+            body > footer {
+                margin: 1.5rem 1rem !important;
+                padding: 1rem !important;
+            }
 
-        [data-theme="dark"] .copyright {
-            color: rgba(255, 255, 255, 0.7);
+            body > footer .copyright {
+                font-size: 0.9rem !important;
+            }
+
+            body > footer .social-links {
+                gap: 1rem !important;
+            }
+
+            body > footer .social-links a {
+                font-size: 1.1rem !important;
+            }
         }
 
         html {
@@ -946,64 +967,6 @@
 
             .chart-container {
                 height: 250px;
-            }
-        }
-
-        /* Footer Section */
-        .footer-section {
-            background: var(--primary);
-            color: white;
-            padding: 1.5rem 1rem;
-            margin-top: 3rem;
-            border-radius: 20px 20px 0 0;
-            position: relative;
-            bottom: 0;
-            width: 100%;
-        }
-
-        .footer-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1rem;
-        }
-
-        .copyright {
-            font-size: 1.1rem;
-            color: rgba(255, 255, 255, 0.9);
-            font-weight: 500;
-            letter-spacing: 0.5px;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .social-links a {
-            color: white;
-            font-size: 1.2rem;
-            transition: all 0.3s ease;
-            opacity: 0.8;
-        }
-
-        .social-links a:hover {
-            color: var(--secondary);
-            opacity: 1;
-            transform: translateY(-2px);
-        }
-
-        @media (max-width: 768px) {
-            .footer-content {
-                flex-direction: column;
-                gap: 1rem;
-                text-align: center;
-            }
-
-            .copyright {
-                font-size: 1rem;
             }
         }
 
