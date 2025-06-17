@@ -5,6 +5,8 @@ from django.http import JsonResponse
 from django.shortcuts import render
 from django.views.generic import TemplateView
 from rest_framework.pagination import PageNumberPagination
+from django.db.models import Count
+from datetime import datetime
 
 class StandardResultsSetPagination(PageNumberPagination):
     page_size = 10
@@ -39,7 +41,18 @@ class ReactAppView(TemplateView):
         return context
 
 def ipo_chart_data(request):
-    # TODO: Replace with real data from your models
-    labels = ['Jan', 'Feb', 'Mar', 'Apr', 'May']
-    values = [3, 7, 4, 6, 5]
+    # Aggregate IPOs by month
+    monthly_ipo_count = IPO.objects.extra({
+        'month': "strftime('%Y-%m', open_date)" # For SQLite
+    }).values('month').annotate(count=Count('id')).order_by('month')
+
+    # Adjust for PostgreSQL
+    if monthly_ipo_count.count() == 0:
+        monthly_ipo_count = IPO.objects.extra({
+            'month': "to_char(open_date, 'YYYY-MM')" # For PostgreSQL
+        }).values('month').annotate(count=Count('id')).order_by('month')
+
+    labels = [item['month'] for item in monthly_ipo_count]
+    values = [item['count'] for item in monthly_ipo_count]
+
     return JsonResponse({'labels': labels, 'values': values})
