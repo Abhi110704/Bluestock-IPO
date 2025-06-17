@@ -31,24 +31,29 @@
 
 .App-header {
   background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
-  padding: 2rem 1rem;
+  padding: 1.5rem 1rem;
   color: white;
-  border-radius: 0 0 20px 20px;
+  border-radius: 20px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 1150px;
+  margin: 0 auto;
 }
 
 .App-header h1 {
-  font-size: 2rem;
+  font-size: 1.8rem;
   margin: 0.5rem 0;
   color: white;
 }
 
 .description {
-  font-size: 1.1rem;
+  font-size: 1rem;
   max-width: 800px;
   margin: 0 auto;
   color: rgba(255, 255, 255, 0.9);
-  line-height: 1.6;
+  line-height: 1.5;
 }
 
 main {
@@ -59,22 +64,66 @@ main {
 
 @media (max-width: 768px) {
   .App-header {
-    padding: 1.5rem 1rem;
+    padding: 1rem 0.8rem;
   }
 
   .App-logo {
-    height: 50px;
+    height: 45px;
   }
 
   .App-header h1 {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
   }
 
   .description {
-    font-size: 1rem;
+    font-size: 0.9rem;
   }
 
   main {
     padding: 1.5rem 0.5rem;
   }
+}
+
+/* Scroll to Top Button */
+.scroll-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: var(--accent);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1.4rem;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+    z-index: 999;
+}
+
+.scroll-to-top.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(-5px);
+}
+
+.scroll-to-top:hover {
+    background-color: var(--primary);
+    transform: translateY(-8px) scale(1.05);
+}
+
+@media (max-width: 768px) {
+    .scroll-to-top {
+        bottom: 20px;
+        right: 20px;
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+    }
 }
