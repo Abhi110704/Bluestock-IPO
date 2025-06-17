@@ -92,7 +92,7 @@ Before you begin, ensure you have the following installed on your system:
     python -m venv venv
     .\venv\Scripts\activate
     ```
-    (You should see `(venv)` at the beginning of your command prompt line, indicating the virtual environment is active.)
+    (You should see `(venv)` at the beginning of your command prompt line.)
 
 3.  **Install backend dependencies:**
 
@@ -101,17 +101,7 @@ Before you begin, ensure you have the following installed on your system:
     pip install -r requirements.txt
     ```
 
-4.  **Install frontend dependencies and build React app:**
-
-    Navigate to the `frontend` directory, install npm packages, and build the React application:
-    ```cmd
-    cd frontend
-    npm install
-    npm run build
-    cd ..
-    ```
-
-5.  **Set up your PostgreSQL database:**
+4.  **Set up your PostgreSQL database:**
 
     *   **Ensure your PostgreSQL server is running.**
     *   **Create a new database** for the project (e.g., `ipo_db`) and a user with appropriate permissions. You can do this using `psql` (PostgreSQL command-line client) or a GUI tool like pgAdmin. For example, using `psql`:
@@ -129,23 +119,36 @@ Before you begin, ensure you have the following installed on your system:
         DATABASE_URL=postgres://youruser:yourpassword@localhost:5432/ipo_db
         ```
 
-6.  **Run database migrations:**
+5.  **Run database migrations:**
 
     This will set up the necessary tables in your `ipo_db` database.
     ```cmd
+    python manage.py makemigrations
     python manage.py migrate
     ```
 
-7.  **Load sample data (optional):**
+6.  **Load sample data (optional):**
 
     Populate your database with some initial IPO data:
     ```cmd
     python manage.py load_sample_data
     ```
 
+7.  **Build and Deploy Frontend (React):**
+
+    Navigate to the `frontend` directory, install npm packages, build the React application, and copy the built files to your Django static directory.
+    ```cmd
+    cd frontend
+    npm install
+    npm run build
+    xcopy /E /I /Y build\* ..\static\  # For Windows
+    cd ..
+    ```
+    (Run `npm install` and `npm run build` whenever you make changes to the React code.)
+
 8.  **Start the Django development server:**
 
-    Your application will be accessible in your web browser.
+    Your application's backend and the React frontend (served by Django) will be accessible in your web browser.
     ```cmd
     python manage.py runserver
     ```
@@ -180,11 +183,14 @@ bluestock-ipo/
 │   └── uploaded logos
 └── README.md
 ```
-## 🔗 Live URLs (Local)
+## 🔗 Local URLs
 
-- 🛠 **Admin Panel:**                   [http://127.0.0.1:8000/admin/](http://127.0.0.1:8000/admin/)
-- 📄 **IPO Listings (UI):**            [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
-- 🔌 **API Endpoint (GET/POST IPOs):** [http://127.0.0.1:8000/api/ipo/](http://127.0.0.1:8000/api/ipo/)
+Once the Django development server is running (`python manage.py runserver`):
+
+*   **Main Application (Django-served React):** [http://127.0.0.1:8000/](http://127.0.0.1:8000/) 
+*   **Admin Panel (Django):** [http://127.0.0.1:8000/admin/](http://127.0.0.1:8000/admin/)
+*   **API Endpoint (GET/POST IPOs):** [http://127.0.0.1:8000/api/ipo/](http://127.0.0.1:8000/api/ipo/)
+*   **React Development Server (if `npm start` is used):** [http://localhost:3000/](http://localhost:3000/) 
 
 ---
 
