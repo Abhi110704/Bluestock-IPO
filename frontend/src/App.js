@@ -17,10 +17,22 @@ function App() {
   const [pageObj, setPageObj] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
+  const [showScroll, setShowScroll] = useState(false);
 
   useEffect(() => {
     fetchIPOs(currentPage, searchQuery);
-  }, [currentPage, searchQuery]);
+
+    const checkScrollTop = () => {
+      if (!showScroll && window.pageYOffset > 400) {
+        setShowScroll(true);
+      } else if (showScroll && window.pageYOffset <= 400) {
+        setShowScroll(false);
+      }
+    };
+
+    window.addEventListener('scroll', checkScrollTop);
+    return () => window.removeEventListener('scroll', checkScrollTop);
+  }, [currentPage, searchQuery, showScroll]);
 
   const fetchIPOs = async (page = 1, query = '') => {
     setLoading(true);
@@ -65,6 +77,10 @@ function App() {
     setCurrentPage(newPage);
   };
 
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
     <div className="App">
       <header className="App-header">
@@ -102,6 +118,14 @@ function App() {
         <div className="section-divider"></div>
       </main>
       <FooterSection />
+
+      {/* Scroll to Top Button */}
+      <button
+        className={`scroll-to-top ${showScroll ? 'show' : ''}`}
+        onClick={scrollToTop}
+      >
+        <i className="fas fa-arrow-up"></i>
+      </button>
     </div>
   );
 }
