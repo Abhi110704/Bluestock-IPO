@@ -1,26 +1,17 @@
 import React from 'react';
-import './FooterSection.css';
+import './FeatureSection.css';
 
-const FooterSection = () => {
-  const currentYear = new Date().getFullYear();
-
+const FeatureSection = () => {
   return (
-    <footer className="footer-section">
-      <div className="footer-content">
-        <div className="copyright">
-          © {currentYear} Bluestock IPO. All rights reserved. Developed and Owned by Abhiyanshu Anand.
-        </div>
-        <div className="social-links">
-          <a href="https://github.com/Abhi110704" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-            <i className="fab fa-github"></i>
-          </a>
-          <a href="https://www.linkedin.com/in/abhiyanshu-anand-617963281/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-            <i className="fab fa-linkedin"></i>
-          </a>
-        </div>
+    <div className="feature-section">
+      <div className="feature-grid">
+        <div className="feature-item"><i className="fas fa-chart-bar"></i><h3>Real-time Analytics</h3><p>Track IPO performance with advanced analytics and real-time market data.</p></div>
+        <div className="feature-item"><i className="fas fa-bell"></i><h3>Smart Alerts</h3><p>Get instant notifications about price changes and important updates.</p></div>
+        <div className="feature-item"><i className="fas fa-file-alt"></i><h3>Detailed Reports</h3><p>Access comprehensive reports and analysis for informed decisions.</p></div>
+        <div className="feature-item"><i className="fas fa-shield-alt"></i><h3>Secure Platform</h3><p>Your data is protected with enterprise-grade security measures.</p></div>
       </div>
-    </footer>
+    </div>
   );
 };
 
-export default FooterSection; 
+export default FeatureSection; 
