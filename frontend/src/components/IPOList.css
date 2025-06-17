@@ -7,7 +7,7 @@
 
 @media (max-width: 768px) {
   .ipo-container {
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Adjust min-width for smaller screens */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     padding: 0.5rem;
     gap: 1rem;
   }
@@ -15,7 +15,7 @@
 
 @media (max-width: 480px) {
   .ipo-container {
-    grid-template-columns: 1fr; /* Stack cards vertically on very small screens */
+    grid-template-columns: 1fr;
     padding: 0.5rem;
     gap: 1rem;
   }
@@ -25,12 +25,13 @@
   background: var(--card-bg);
   border-radius: 12px;
   padding: 1.2rem;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   transition: transform 0.3s;
-  border: 1px solid var(--border-color);
   display: flex;
   flex-direction: column;
   align-items: center;
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 .ipo-card img {
@@ -42,6 +43,9 @@
   border-radius: 8px;
   padding: 0.5rem;
   background: #f8f9fa;
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 .ipo-card:hover img {
@@ -118,7 +122,6 @@
   margin: 0;
 }
 
-/* Temporary debug rule to identify overflowing elements */
-* {
-  /* outline: 1px solid red !important; */
-} 
+/* * {
+  outline: 1px solid red !important; 
+} */
