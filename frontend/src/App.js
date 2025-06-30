@@ -39,7 +39,7 @@ function App() {
     setError(null);
     try {
       console.log('Fetching IPOs...');
-      const response = await fetch(`/api/ipo/?page=${page}&q=${query}`);
+      const response = await fetch(`/api/ipo/?page=${page}&search=${query}`);
       if (!response.ok) {
         throw new Error(`Failed to fetch IPOs: ${response.status} ${response.statusText}`);
       }
