@@ -6,6 +6,6 @@ router = DefaultRouter()
 router.register('ipo', IPOViewSet, basename='ipo')
 
 urlpatterns = [
-    path('', include(router.urls)),                 # This will now be just 'ipo/' within ipo_app.urls
+    path('', include(router.urls)),   
     path('chart-data/', ipo_chart_data, name='ipo_chart_data'),
 ]
