@@ -1,3 +1,4 @@
+
 # 📊 Bluestock IPO Listings
 
 A modern, responsive Django web app to track, view, and manage Initial Public Offerings (IPOs). Built with PostgreSQL, Django REST Framework, and a React.js frontend.
