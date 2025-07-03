@@ -1,6 +1,5 @@
 import React from 'react';
 import './FeatureSection.css';
-
 const FeatureSection = () => {
   return (
     <div className="feature-section">
