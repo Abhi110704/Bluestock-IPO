@@ -1,9 +1,7 @@
 import React from 'react';
 import './FooterSection.css';
-
 const FooterSection = () => {
   const currentYear = new Date().getFullYear();
-
   return (
     <footer className="footer-section">
       <div className="footer-content">
@@ -22,5 +20,4 @@ const FooterSection = () => {
     </footer>
   );
 };
-
 export default FooterSection; 
