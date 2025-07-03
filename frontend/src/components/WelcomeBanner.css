@@ -37,7 +37,6 @@
 .welcome-banner .get-notified-button:hover {
   background: var(--primary);
 }
-
 [data-theme="dark"] .welcome-banner {
     background: #2a2a2a;
     color: #e0e0e0;
