@@ -27,8 +27,8 @@
 }
 
 .testimonial-card {
-    flex: 1 1 280px; /* Allow shrinking and growing, with a minimum width of 280px */
-    max-width: 300px; /* Keep a sensible max-width for larger screens */
+    flex: 1 1 280px;
+    max-width: 300px; 
     background: var(--background);
     padding: 1.2rem;
     border-radius: 8px;
@@ -79,7 +79,6 @@
     margin-top: 0.2rem;
 }
 
-/* Dark mode adjustments */
 [data-theme="dark"] .testimonial-card {
     background: #2a2a2a;
     border-color: #404040;
@@ -112,9 +111,9 @@
 
     .testimonial-card {
         width: 100%;
-        max-width: 300px; /* Still limit max-width, but it will shrink with 100% width */
-        flex-basis: auto; /* Allow flex-basis to be determined by content or width */
-        padding: 1rem; /* Slightly reduced padding */
+        max-width: 300px; 
+        flex-basis: auto; 
+        padding: 1rem; 
     }
 }
 
