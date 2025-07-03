@@ -13,7 +13,6 @@
   --error: #f44336;
   --border-color: #e0e0e0;
 }
-
 .App {
   text-align: center;
   background-color: var(--background);
