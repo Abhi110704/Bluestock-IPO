@@ -10,5 +10,4 @@ const MarketStats = () => {
     </div>
   );
 };
-
 export default MarketStats; 
