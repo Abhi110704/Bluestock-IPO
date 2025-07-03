@@ -42,12 +42,9 @@ class ReactAppView(TemplateView):
         return context
 
 def ipo_chart_data(request):
-    # Aggregate IPOs by month using TruncMonth for database-agnostic grouping
     monthly_ipo_count = IPO.objects.annotate(
         month=TruncMonth('open_date')
     ).values('month').annotate(count=Count('id')).order_by('month')
-
-    # Format the month labels as 'YYYY-MM'
     labels = [item['month'].strftime('%Y-%m') for item in monthly_ipo_count]
     values = [item['count'] for item in monthly_ipo_count]
 
