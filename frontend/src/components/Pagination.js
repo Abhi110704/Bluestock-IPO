@@ -3,7 +3,7 @@ import './Pagination.css';
 
 const Pagination = ({ pageObj, requestQuery }) => {
   if (!pageObj || !pageObj.is_paginated) {
-    return null; // Don't render pagination if not paginated
+    return null;
   }
 
   const renderPageLinks = () => {
