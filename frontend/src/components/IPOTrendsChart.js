@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import Chart from 'chart.js/auto'; // Import Chart.js
+import Chart from 'chart.js/auto';
 import './IPOTrendsChart.css';
 
 const IPOTrendsChart = () => {
@@ -10,7 +10,7 @@ const IPOTrendsChart = () => {
     const ctx = chartRef.current.getContext('2d');
 
     if (chartInstance.current) {
-      chartInstance.current.destroy(); // Destroy existing chart instance
+      chartInstance.current.destroy();
     }
 
     chartInstance.current = new Chart(ctx, {
@@ -77,8 +77,8 @@ const IPOTrendsChart = () => {
       }
     };
 
-    updateChart(); // Initial fetch
-    const interval = setInterval(updateChart, 10000); // Fetch every 10 seconds
+    updateChart();
+    const interval = setInterval(updateChart, 10000); 
 
     return () => {
       clearInterval(interval);
