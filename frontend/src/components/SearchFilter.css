@@ -122,7 +122,6 @@
   }
 }
 
-/* Dark Mode Specific Styles */
 [data-theme="dark"] .search-filter input {
     background: #2a2a2a;
     color: #ffffff;
