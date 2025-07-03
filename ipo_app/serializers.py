@@ -1,6 +1,5 @@
 from rest_framework import serializers
 from .models import IPO
-
 class IPOSerializer(serializers.ModelSerializer):
     issue_size_display = serializers.SerializerMethodField()
 
