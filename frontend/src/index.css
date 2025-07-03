@@ -1,10 +1,9 @@
-/* Reset some default browser styles */
 html,
 body {
   margin: 0;
   padding: 0;
-  width: 100vw; /* Explicitly set to viewport width */
-  overflow-x: hidden; /* Absolutely prevent horizontal scrolling */
+  width: 100vw;
+  overflow-x: hidden;
 }
 
 body {
@@ -14,13 +13,9 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
-/* Universal box-sizing for predictable layouts */
 *, *::before, *::after {
   box-sizing: border-box;
 }
-
-/* Responsive images and media */
 img, video, embed, object, iframe {
   max-width: 100%;
   height: auto;
