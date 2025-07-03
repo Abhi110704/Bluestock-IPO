@@ -6,10 +6,7 @@ class Command(BaseCommand):
     help = 'Loads sample IPO data'
 
     def handle(self, *args, **kwargs):
-        # Clear existing data
         IPO.objects.all().delete()
-
-        # Sample IPO data
         sample_ipos = [
             {
                 'company_name': 'TechCorp Solutions',
@@ -27,7 +24,7 @@ class Command(BaseCommand):
                 'price_band': '₹1200-1250',
                 'open_date': (datetime.now() + timedelta(days=5)).date(),
                 'close_date': (datetime.now() + timedelta(days=8)).date(),
-                'issue_size': 750.00,  # 750 crores
+                'issue_size': 750.00,  
                 'issue_type': 'Book Built',
                 'listing_date': (datetime.now() + timedelta(days=15)).date(),
                 'status': 'upcoming',
@@ -38,7 +35,7 @@ class Command(BaseCommand):
                 'price_band': '₹950-1000',
                 'open_date': (datetime.now() - timedelta(days=20)).date(),
                 'close_date': (datetime.now() - timedelta(days=17)).date(),
-                'issue_size': 300.00,  # 300 crores
+                'issue_size': 300.00,  
                 'issue_type': 'Book Built',
                 'listing_date': (datetime.now() - timedelta(days=10)).date(),
                 'status': 'listed',
@@ -47,8 +44,6 @@ class Command(BaseCommand):
                 'current_market_price': 1100.0,
             },
         ]
-
-        # Create IPOs
         for ipo_data in sample_ipos:
             IPO.objects.create(**ipo_data)
 
