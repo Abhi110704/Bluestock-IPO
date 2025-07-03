@@ -12,7 +12,6 @@ const IPOList = ({ ipos, loading, error }) => {
       </div>
     );
   }
-
   return (
     <div className="ipo-container">
       {ipos.map((ipo) => (
