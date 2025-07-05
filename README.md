@@ -27,7 +27,8 @@ A modern, responsive Django web app to track, view, and manage Initial Public Of
 
 ## 🎥 Video Demo
 
-[![▶️](https://jmp.sh/mYDMnilW)](https://jmp.sh/mYDMnilW)
+[![▶️ Watch Demo](https://i.imgur.com/JPqVw2K.png)](https://jmp.sh/mYDMnilW)
+
 
 
 ---
