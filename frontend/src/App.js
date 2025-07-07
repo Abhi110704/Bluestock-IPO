@@ -9,7 +9,6 @@ import Pagination from './components/Pagination';
 import IPOTrendsChart from './components/IPOTrendsChart';
 import TestimonialsSection from './components/TestimonialsSection';
 import FooterSection from './components/FooterSection';
-
 function App() {
   const [ipos, setIpos] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -46,7 +45,6 @@ function App() {
       const data = await response.json();
       console.log('Received data:', data);
       
-      // Handle both array and paginated responses
       const fetchedIpos = Array.isArray(data) ? data : (data.results || []);
       const totalCount = data.count || fetchedIpos.length;
 
@@ -83,6 +81,7 @@ function App() {
 
   return (
     <div className="App">
+      {/* <AdminDashboard /> */}
       <header className="App-header">
         <img 
           src="https://github.com/Abhi110704/Bluestock-IPO/blob/main/Sample%20Project%20Files/logo.png?raw=true" 
