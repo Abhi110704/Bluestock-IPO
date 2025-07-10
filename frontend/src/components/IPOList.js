@@ -12,6 +12,7 @@ const IPOList = ({ ipos, loading, error }) => {
       </div>
     );
   }
+
   return (
     <div className="ipo-container">
       {ipos.map((ipo) => (
@@ -29,6 +30,18 @@ const IPOList = ({ ipos, loading, error }) => {
             <p><strong>Issue Size:</strong> ₹{ipo.issue_size || 'N/A'}</p>
             <p><strong>Open Date:</strong> {ipo.open_date || 'TBA'}</p>
             <p><strong>Close Date:</strong> {ipo.close_date || 'TBA'}</p>
+            <div className="ipo-files">
+              <p><strong>RHP File:</strong> {ipo.rhp_pdf ? (
+                <a href={ipo.rhp_pdf} target="_blank" rel="noopener noreferrer" className="file-btn">Download RHP</a>
+              ) : (
+                <span className="no-file">No file</span>
+              )}</p>
+              <p><strong>DRHP File:</strong> {ipo.drhp_pdf ? (
+                <a href={ipo.drhp_pdf} target="_blank" rel="noopener noreferrer" className="file-btn">Download DRHP</a>
+              ) : (
+                <span className="no-file">No file</span>
+              )}</p>
+            </div>
           </div>
         </div>
       ))}
